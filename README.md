@@ -1,13 +1,50 @@
-1.- UN EJERCICIO BASTANTE SENCILLO PARA INICAR CON LAS PROMESAS. PRIMERAMENTE GENERÉ UNA FUNCIÓN AL CUAL LE COLOQUÉ UN PARAMETRO LLAMADO "TAMAÑO" EN EL CUAL COLOCARÍA EL VALOR DEL ARCHIVO A DESCARGAR. POSTEIORMENTE, INICIALICE LA PROMESA CON SU "RESOLVE" Y "REJECT"; ESTO PARA MANEJAR SUS DOS POSIBLES SALIDAS. DESTRO DE ESTAS CON AYUDA DE UNA CONDICIONA MANEJARÍA EL TAMAÑO QUE LE ASIGANRÍAMOS, SI ERA IGUAL O MENOR A 50 ENTRARÍAMOS A "RESOLVE" DE CASO CONTRARIO AL "REJECT". FINALMENTE PUSE EJEMPLOS DE USO DE CADA UNO.
+Este repositorio contiene una serie de 7 ejercicios diseñados para practicar la implementación y el manejo de flujos asíncronos en JavaScript utilizando el objeto Promise. Cada ejercicio simula un escenario de la vida real (descargas, pagos, autenticación) para ilustrar el uso de resolve y reject.
+-------descargarArchivo(tamaño)------------------
+Concepto Clave: Introducción a las promesas y manejo de estados básicos.
 
-2.- MUY SIMILAR AL EJERCICIO 2, SOLO CON UNA FUNCIÓN Y PARAMETRO DIFERENTE EN ESTE CASO CON RESPECTO A LA EDAD. LO RESOLVÍ PRÁCTICAMENTE IGUAL. LO ÚNICO DIFERENTE QUE ENCONTRÉ FUE AL DEFINIR LA CONDICÓN YA QUE LA QUISE DEFINIR DE LA SIGUIENTE MANERA "=>" Y EL "IF" LO DETECTABA COMO UNA DECLARACIÓN DE FUNCIÓN DE FLECHA Y TUVE QUE VOLTEAR LOS SÍMBOLOS PARA QUE HICIERA LA COMPARACIÓN PERTINENTE.
+Objetivo: Simular la descarga de un archivo.
 
-3.- EN ESTE CASO, EN BASE A UN OBJETO, DEFINIMOS UNA FUNCIÓN Y LE ENTREGAMOS DOS VALORES (PRODUCTO Y CANTIDAD); LOS CUALES PASARÁN POR UNA CONDICIÓN LA CUAL REVISARÁ LOS CASOS Y ARROJARÁ LOS RESULTADOS. ES MUY SIMILAR A LOS EJERICIOS ANTERIORES SOLO QUE EN ESTE EJERCICIO SE APLICA EL ENVIÓ DE DOS VARIABLES.
+Lógica: La promesa se resuelve exitosamente si el tamaño es menor o igual a un umbral definido (50), y se rechaza si es demasiado grande, demostrando el manejo del flujo .then() y .catch().
 
-4.- EJERCICIO BASTANTE SENCILLO, MUY SIMILAR A LOS PRIMERO QUE REALIZAMOS. GENERAMOS UNA FUNCIÓN CON UN PARAMETRO; EN BASE A ELLO CON UNA CONDICIÓN VEMOS QUE ENTRADA ES LA QUE DAREMOS SI EL RESOLVE O EL REJECT.
+-----------------------------verificarEdad(edad) -----------------------------------
 
-5.- EN ESTE EJERCICIO VOLVIMOS A IMPLEMENTAR LOS OBJETOS SOLO QUE DE FORMA ALGO DIFERENTE, LOS INTRODUJIMOS DENTRO DE LAS PROMESAS. ES DECIR SI SE COMPLETABA UNA CONDICIÓN ARROJABAMOS UN OBJETO; SI NO SE COMPLETABA ARROJABAMOS EL OTRO. ESTO DEBIDO A QUE SI COLOCABAMOS LOS OBJETOS FUERA DE LA PROMESA NO PODÍAN GENERARSA YA QUE NECESITABAN EL PARAMETRO USUARIO, EL CUAL, VENÍA EN LA FUNCIÓN DE LA PROMESA.
+Concepto Clave: Uso de promesas para validación de datos.
 
-6.- EN ESTE EJEMPLO, DECIDÍ BASARME EN EL ANTERIOR. BASICAMENTE HICE LO QUE HE ESTADO HACIENDO EN LOS EJERCICIOS ANTERIORES: GENERAR LA FUNCIÓN, CREAR LA PROMESA, POR MEDIO DE LA CONDICIONAL DEFINIR EL CAMINO, ETC. SOLO QUE EN ESTE CASO VOLVÍ A GENERAR EL OBJETO DENTRO DE LA PROMESA YA QUE DARÍA SALIDA AL "MONTO" DENTRO DE ESTA, Y ES UNA VARIABLE QUE SOLICITA LA FUNCIÓN.
+Objetivo: Implementar un control de acceso basado en la edad.
 
-7.- EN ESTE EJERCICIO PODRÍA DECIR QUE ATERRIZAMOS TODO LO VISTO EN LOS ANTERIRORES: FUNCIONES, PROMESAS, OBJETOS, ETC. SOLO QUE EN ESTE EJERCICIO PARTICULAR IMPLEMENTAMOS LA IMPLEMENTACIÓN DE LOS OBJETOS TANTO DE FORMA GLOBAL PARA LA BD DE LAS CIUDAS COMO LOCAL PARA LA SALIDA DE ESTAS.
+Lógica: La promesa utiliza una condición simple para determinar si la edad es válida para la acción (ej. una compra), resolviendo el flujo si la condición se cumple o rechazándolo si no, reforzando la estructura básica de Promise(resolve, reject).
+
+---------------------------------verificarStock(producto, cantidad)  ---------------------------------------------------------
+Concepto Clave: Promesas con validación contra una fuente de datos externa.
+
+Objetivo: Verificar la disponibilidad de un producto en un inventario estático.
+
+Lógica: La función recibe dos parámetros y consulta un objeto global (inventario) para confirmar la existencia del producto (hasOwnProperty) y si la cantidad solicitada está disponible, resolviendo solo si ambas condiciones son ciertas.
+
+------------------------------------------------ procesarPago(monto)-----------------------------------------------------------------------
+Concepto Clave: Promesas para validación de transacciones simples.
+
+Objetivo: Validar si un monto de pago es aceptable.
+
+Lógica: Es un ejercicio directo que resuelve la promesa si el monto es un valor positivo, simulando un pago exitoso, o lo rechaza si el monto es inválido (negativo o cero).
+
+------------------------------------------ autenticarUsuario(usuario, contraseña) ---------------------------------------------------------------
+Concepto Clave: Simulación de API con respuestas estructuradas (JSON).
+
+Objetivo: Implementar una promesa para verificar credenciales fijas.
+
+Lógica: En lugar de devolver solo un mensaje de texto, esta promesa devuelve objetos estructurados. En caso de éxito, retorna un objeto con el usuario y su rol. En caso de fallo, retorna un objeto de error con un código (ej. 401 Unauthorized), imitando una respuesta de servidor real.
+
+--------------------------------------------- verificarSaldo(cuenta, monto) -------------------------------------------------------------------------------
+Concepto Clave: Lógica de negocio avanzada con retorno de estado financiero.
+
+Objetivo: Simular una verificación de saldo bancario antes de una transacción.
+
+Lógica: Compara el monto a retirar con la cuenta actual. La promesa retorna un objeto de éxito con el saldoRestante calculado o un objeto de error (ej. con código 402, Fondos Insuficientes) que incluye el saldoDisponible, proporcionando datos detallados en ambos escenarios.
+
+------------------------------------- consultarClima(ciudad) ------------------------------------------------------------------------------------------------------
+Concepto Clave: Simulación completa de una consulta a una base de datos/API.
+
+Objetivo: Consultar el clima para una ciudad específica en una "Base de Datos" local (objeto).
+
+Lógica: Utiliza un objeto global como fuente de datos. Si la ciudad existe en la base de datos, la promesa se resuelve devolviendo un objeto con la temperatura y condición. Si la ciudad no existe, se rechaza con un objeto de error y un código 404 (No Encontrado), consolidando el uso de funciones, promesas y objetos estructurados.
